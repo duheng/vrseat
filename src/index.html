@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vrseat</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		*{
+			margin:0;padding:0; 
+		}
+		html { height:100%;}
+		body {flex:1; height:100%; overflow:hidden; font-family:Arial, Helvetica, sans-serif; font-size: 62.5%; color:#FFFFFF; background-color:#000000; }
+    h1{
+    	text-align: center;
+    	margin: 20% 0;
+    }
+    h3{
+    	 font-size: 1.4em;
+    }
+		#box li{
+			display: block;
+			margin:10px;
+			min-width: 7%;
+      padding: 0 5px;
+			border-radius: 5px;
+			background: #c5c5c5;
+		}
+		#box ul {
+			display: flex;
+		  flex-direction:row;
+		  justify-content:center;
+		  font-size: 1.4em;
+		
+		}
+		footer{
+			margin: 10%;
+		}
+	</style>
+	<script src='./vrseat.js'></script>
+</head>
+<body>
+<h1>VR观影选座演示demo</h1>
+<div id="box"></div>
+<footer>
+	<h3>作者：杜恒</h3>
+	<h3>email：duheng1100@163.com</h3>
+</footer>
+<script>
+	;(()=>{
+		
+	  var seatDom = [];
+		
+		for(var row=0;row<5;row++){
+			let rowDom = '';
+			for(var column=0;column<6;column++){
+				if(!(row == 2 && column == 5)){
+					rowDom += `<li class="seat" data-seat='${row+1}0${column+1}'>${row+1}排<br />${column+1}座</li>`;
+				};
+			
+			};
+				seatDom.push(`<ul data-id='${row}'>${rowDom}</ul>`);
+		};
+
+		document.getElementById('box').innerHTML = seatDom.join('');
+				
+		[].forEach.call(document.querySelectorAll('.seat'), function(item) {
+		   item.addEventListener(
+		    'click',
+		    ()=>{
+					vrseat(item.getAttribute('data-seat'));
+		    },
+		    false
+		  );
+		});
+
+	})();
+</script>
+</body>
+</html>
