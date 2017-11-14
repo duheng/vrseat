@@ -52,4 +52,6 @@ cd vrseat
 
 sudo node  server   
 
+访问 http://localhost/src/index.html
+
 ```
