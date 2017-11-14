@@ -1,1 +1,49 @@
-<encrypted><![CDATA[KENCRUZRfAT[`B9PglH]N1iu,l#v-D^iF6%3+I_+7fVRV$Uf^>%qD7s]cK$6%@'5&d$L1^&jFo5#N^a?:dI*unmZa&b'/iwKE>BP+>sQM(K6F%^ieV8n`hDYrAq/Jsur6`%tNkIY'r$#^5hc->p*SUjRUJf1g<c7emAu>l5<6jm&Oc-,w]R+7Tvf@^Q[d/U8b07pB(b_f/)OY9d*mfZ<45mp[d3if#%7S1hqhfeNR:q8'8/b$rVeA%qi`pO?e`AfW0LEXZHCW;u__:=dXQa)5arPmV*EAdEq<ZI#tT@==Ng#Wp0`RW'i%VGqfFqYWcFkoE$cHu^9jul<Is$f@KWfolw_P-nxLM8@l^@,0m,7*Y]_ajHZ)eSGB<pN[m+u4OZoEhT^B`Xa0_&L*oF5N=#o/Q-f/bs,2?qR`:37w(jd@245Hq+c;_q[Y,)m-t+Y2qQ[WkZ[N29fGPFXXwa76m3.j4BIvsKLYG=`pf?h6u(V;'q8Zn>6W6f+><dV&4*W-1:B_+SV=QDOJ:PC/R17ZgYh$jS/r*-Z=f`]J3p)%CLd.]:+Bj[7AuARbQ9QO.k5%6'H#%4BpRY+*jJmWkC;BPI?#+g3[lUK#VP9?D4d^usoOZXH7F7)tS(lB18P>t;IoUbqNe*/]GE`I#b/qR=tL<7=#7f2(w'19VCF'M;3C0(P?eo@NPJU3a7#&S^hV;X4EcoSL5kO:1KxKgB]%ZTUKg9P8crejw5%g$IkWSBk92ThIdtqRu0%>AG'2D1&a#mik3vsO-_*USSKY]ftn5S@C[:hq'n)b^;E/js.is,]4lgAo/wqs9eY?GrQ^8]aU6>^;w5X&U(>f3,D'twoc9fm?LS]^Os9(>sUmoaPfHDa*J)h9(9VklUlV7q1F>4TgEgJkKV_TB8H*O7-*f-Y?@Q=4heJRUH:Um)RAuY%Z6Cf0uOeCMS%d]R_$Wh).bGV+^F*fa8,uR&`%6dnTMjCp_vH);D.0u@KEp]j'Aa]XidfTX9-pk,]]></encrypted>
+<krpano>
+
+	<contextmenu versioninfo="false"   fullscreen="true"   enterfs="全屏" exitfs="退出全屏">
+		<item name="gongsi"
+          caption="版权所有者-杜恒" 
+          enabled="true"
+          visible="true"
+          />
+	</contextmenu>
+	<!-- loading animation events -->
+	<events name="loadinganimation" keep="true"
+	        onxmlcomplete="loadinganimation_startloading();"
+	        onloadcomplete="delayedcall(0.25, loadinganimation_stoploading() );"
+	        />
+
+	<!-- loading animation graphic -->
+	<hotspot name="loadinganimation"
+	         keep="true"
+	         visible="false"
+	         flying="1.0"
+	         url="loadinganimation.png"
+	         crop="0|0|64|64"
+	         frame="0" frames="8"
+	         />
+
+	<!-- loading percent actions -->
+	<action name="loadinganimation_startloading">
+		set(loadinganimation_isloading, true);
+		set(hotspot[loadinganimation].visible, true);
+		loadinganimation_animate();
+	</action>
+
+	<action name="loadinganimation_stoploading">
+		set(loadinganimation_isloading, false);
+		set(hotspot[loadinganimation].visible, false);
+	</action>
+
+	<action name="loadinganimation_animate">
+		mul(xcrop, hotspot[loadinganimation].frame, 64);
+		txtadd(hotspot[loadinganimation].crop, get(xcrop), '|0|64|64');
+
+		if(loadinganimation_isloading,
+			inc(hotspot[loadinganimation].frame);
+			if(hotspot[loadinganimation].frame GE hotspot[loadinganimation].frames, set(hotspot[loadinganimation].frame,0));
+			delayedcall(0.05, loadinganimation_animate() );
+		  );
+	</action>
+
+</krpano>
