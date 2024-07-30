@@ -24,6 +24,11 @@ var mine={
           "xml": "text/xml"
         };
 var server = http.createServer(function (request, response) {
+    if (path.normalize(decodeURI(request.url)) !== decodeURI(request.url)) {
+        response.statusCode = 403;
+        response.end();
+        return;
+    }
     var pathname = url.parse(request.url).pathname;
 		console.log(pathname)
 
